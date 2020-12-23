@@ -27,6 +27,7 @@
 				<view class="" slot="body"> 
 					<view class="u-body-item u-flex u-border-bottom u-col-between u-p-t-0">
 						<view class="u-body-item-title u-line-2">
+							版本号为：{{vuex_version}}
 							瓶身描绘的牡丹一如你初妆，冉冉檀香透过窗心事我了然，宣纸上走笔至此搁一半
 						</view>
 						<image src="https://img11.360buyimg.com/n7/jfs/t1/94448/29/2734/524808/5dd4cc16E990dfb6b/59c256f85a8c3757.jpg" mode="aspectFill"></image>
@@ -51,6 +52,16 @@
 				bottomSlot: true,
 				border: false
 			}
+		},
+		onLoad() {
+			console.log(2233)
+			// 调用getSearch接口
+			this.$u.api.getGoodsList().then(res => {
+				console.log(res, 'rrs');
+			})
+			this.$u.vuex('vuex_token', '1.0.1');
+			// 修改对象的形式，中间用"."分隔
+			this.$u.vuex('vuex_user.name', '诗圣');
 		},
 		methods: {
 			click(index) {

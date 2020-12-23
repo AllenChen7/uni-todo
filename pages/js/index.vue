@@ -1,10 +1,10 @@
 <template>
 	<view class="wrap">
 		<u-form :model="model" :rules="rules" ref="uForm" :errorType="errorType">
-			<u-form-item :leftIconStyle="{color: '#888', fontSize: '32rpx'}" left-icon="account" label-width="120" :label-position="labelPosition" label="TODO" prop="name">
+			<u-form-item :leftIconStyle="{color: '#888', fontSize: '32rpx'}" left-icon="checkbox-mark" label-width="120" :label-position="labelPosition" label="TODO" prop="name">
 				<u-input :border="border" placeholder="请输入 TODO" v-model="model.name" type="text"></u-input>
 			</u-form-item>
-			<u-form-item :label-position="labelPosition" label="分类" prop="sex">
+			<u-form-item :label-position="labelPosition" :leftIconStyle="{color: '#888', fontSize: '32rpx'}" left-icon="tags" label="分类" prop="sex">
 				<u-input :border="border" type="select" :select-open="actionSheetShow" v-model="model.sex" placeholder="请选择分类" @click="actionSheetShow = true"></u-input>
 			</u-form-item>
 			<u-form-item :leftIconStyle="{color: '#888', fontSize: '32rpx'}" left-icon="calendar" label-width="120" :label-position="labelPosition" label="期望开始时间" prop="startTime">
@@ -13,13 +13,13 @@
 			<u-form-item :leftIconStyle="{color: '#888', fontSize: '32rpx'}" left-icon="calendar" label-width="120" :label-position="labelPosition" label="期望结束时间" prop="startTime">
 				<u-input :border="border" placeholder="请选择期望结束时间" v-model="model.endTime" @click='endTimeShowChange' type="text"></u-input>
 			</u-form-item>
-			<u-form-item :label-position="labelPosition" label="所在地区" prop="region" label-width="150">
+			<u-form-item :label-position="labelPosition" :leftIconStyle="{color: '#888', fontSize: '32rpx'}" left-icon="map" label="所在地区" prop="region" label-width="150">
 				<u-input :border="border" type="select" :select-open="pickerShow" v-model="model.region" placeholder="请选择地区" @click="pickerShow = true"></u-input>
 			</u-form-item>
-			<u-form-item :label-position="labelPosition" label="上传图片" prop="photo" label-width="150">
+			<u-form-item :label-position="labelPosition" :leftIconStyle="{color: '#888', fontSize: '32rpx'}" left-icon="photo" label="上传图片" prop="photo" label-width="150">
 				<u-upload width="160" height="160" max-count="1"></u-upload>
 			</u-form-item>
-			<u-form-item :label-position="labelPosition" label="备注" prop="intro">
+			<u-form-item :label-position="labelPosition" :leftIconStyle="{color: '#888', fontSize: '32rpx'}" left-icon="info-circle" label="备注" prop="intro">
 				<u-input type="textarea" :border="border" placeholder="请填写备注" v-model="model.intro" />
 			</u-form-item>
 		</u-form>
