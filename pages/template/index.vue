@@ -6,7 +6,7 @@
 			</view>
 			<view class="u-flex-1">
 				<view class="u-font-18 u-p-b-20">{{vuex_user.name}}</view>
-				<view class="u-font-14 u-tips-color">手机号: {{vuex_user.phone || '***'}}</view>
+				<view class="u-font-14 u-tips-color">邮箱: {{vuex_user.email || '***'}}</view>
 			</view>
 			<view class="u-m-l-10 u-p-10">
 				<u-icon name="scan" color="#969799" size="28"></u-icon>
@@ -18,7 +18,7 @@
 		
 		<view class="u-m-t-20">
 			<u-cell-group>
-				<u-cell-item icon="rmb-circle" title="支付"></u-cell-item>
+				<u-cell-item icon="clock" title="未完成"></u-cell-item>
 			</u-cell-group>
 		</view>
 		<!-- 
@@ -33,7 +33,7 @@
 		
 		<view class="u-m-t-20">
 			<u-cell-group>
-				<u-cell-item icon="setting" title="设置"></u-cell-item>
+				<u-cell-item icon="thumb-up-fill" title="已完成"></u-cell-item>
 			</u-cell-group>
 		</view>
 	</view>

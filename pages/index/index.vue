@@ -1,6 +1,6 @@
 <template>
 	<view class="">
-		<view class="u-card-wrap">
+		<!-- <view class="u-card-wrap">
 			<u-card @click="click" @head-click="headClick" :title="title" :sub-title="subTitle" :thumb="thumb" :padding="padding" :border="border">
 				<view class="" slot="body"> 
 					<view class="u-body-item u-flex u-border-bottom u-col-between u-p-t-0">
@@ -20,22 +20,21 @@
 					<u-icon v-if="bottomSlot" name="chat-fill" size="34" label="30评论"></u-icon>
 				</view>
 			</u-card>
-		</view>
+		</view> -->
 		
-		<view class="u-card-wrap">
-			<u-card @click="click" @head-click="headClick" :title="title" :sub-title="subTitle" :thumb="thumb" :padding="padding" :border="border">
+		<view class="u-card-wrap" v-for="(item, index) in todoList" :key="index">
+			<u-card @click="click" @head-click="headClick" :title="item.title" :sub-title="item.plan_end_tiem" :thumb="item.user.avatar" :padding="padding" :border="border">
 				<view class="" slot="body"> 
 					<view class="u-body-item u-flex u-border-bottom u-col-between u-p-t-0">
 						<view class="u-body-item-title u-line-2">
-							版本号为：{{vuex_version}}
-							瓶身描绘的牡丹一如你初妆，冉冉檀香透过窗心事我了然，宣纸上走笔至此搁一半
+							{{item.desc || '暂无描述~~'}}
 						</view>
-						<image src="https://img11.360buyimg.com/n7/jfs/t1/94448/29/2734/524808/5dd4cc16E990dfb6b/59c256f85a8c3757.jpg" mode="aspectFill"></image>
+						<!-- <image src="https://img11.360buyimg.com/n7/jfs/t1/94448/29/2734/524808/5dd4cc16E990dfb6b/59c256f85a8c3757.jpg" mode="aspectFill"></image> -->
 					</view>
 				</view>
-				<view class="" slot="foot">
+				<!-- <view class="" slot="foot">
 					<u-icon v-if="bottomSlot" name="chat-fill" size="34" label="30评论"></u-icon>
-				</view>
+				</view> -->
 			</u-card>
 		</view>
 	</view>
@@ -50,18 +49,18 @@
 				thumb: 'http://pic2.sc.chinaz.com/Files/pic/pic9/202002/hpic2119_s.jpg',
 				padding: 30,
 				bottomSlot: true,
-				border: false
+				border: false,
+				todoList: []
 			}
 		},
 		onLoad() {
-			// 调用getSearch接口
-			this.$u.api.getGoodsList().then(res => {
+			this.$u.api.getToDoList().then(res => {
 				console.log(res, 'rrs');
+				this.todoList = res.data
 			})
 		},
 		onShow() {
 			console.log(2233)
-			this.$u.vuex('vuex_token', '');
 			console.log(this.vuex_token, 'token')
 		},
 		methods: {

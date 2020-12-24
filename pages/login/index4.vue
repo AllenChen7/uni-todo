@@ -66,8 +66,10 @@ export default {
 					url: '/pages/template/index',
 					type: 'reLaunch'
 				});
+			}).catch(res=>{
+				console.log(res)
+				uni.showToast({ title: '登录失败，请重试！', icon: 'none' });
 			})
-			uni.showToast({ title: '登录成功！', icon: 'none' });
 		},
 		//忘记密码
 		forgotPwd() {
