@@ -161,6 +161,10 @@ export default {
 	onReady() {
 		this.$refs.uForm.setRules(this.rules);
 	},
+	onShow() {
+		var loginRes = this.checkLogin('/pages/template/index', '2');
+				if(!loginRes){return false;}
+	},
 	methods: {
 		startTimeChange(e) {
 			this.model.startTime = e.result

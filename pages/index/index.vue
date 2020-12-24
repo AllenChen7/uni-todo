@@ -54,14 +54,15 @@
 			}
 		},
 		onLoad() {
-			console.log(2233)
 			// 调用getSearch接口
 			this.$u.api.getGoodsList().then(res => {
 				console.log(res, 'rrs');
 			})
-			// this.$u.vuex('vuex_token', '');
-			// 修改对象的形式，中间用"."分隔
-			// this.$u.vuex('vuex_user.name', '诗圣');
+		},
+		onShow() {
+			console.log(2233)
+			this.$u.vuex('vuex_token', '');
+			console.log(this.vuex_token, 'token')
 		},
 		methods: {
 			click(index) {

@@ -55,6 +55,8 @@ export default {
 					}
 				})
 				return false;
+			} else {
+				this.$u.toast('请输入正确的手机号');
 			}
 			console.log(333)
 		}

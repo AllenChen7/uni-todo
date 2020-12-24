@@ -29,10 +29,7 @@ Vue.use(httpApi, app);
 
 Vue.prototype.checkLogin = function(backpage, backtype){
 	if(this.$u.test.isEmpty(this.vuex_token)){
-		// uni.redirectTo({
-		//     url: '/pages/login/index'
-		// });
-		this.$u.route('/pages/login/index', {
+		this.$u.route('/pages/login/index4', {
 			backpage: backpage,
 			backtype: backtype
 		});

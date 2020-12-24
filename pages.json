@@ -32,6 +32,14 @@
 			"style": {
 				"navigationBarTitleText": "登录获取验证码"
 			}
+		},
+		{
+			"path": "pages/login/index4",
+			"style": {
+				"app-plus": {
+				    "titleNView": false
+				}
+			}
 		}
 	],
 	"globalStyle": {
