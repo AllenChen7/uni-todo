@@ -20,6 +20,18 @@
 			"style": {
 				"navigationBarTitleText": "我的"
 			}
+		},
+		{
+			"path": "pages/login/index",
+			"style": {
+				"navigationBarTitleText": "登录"
+			}
+		},
+		{
+			"path": "pages/login/code",
+			"style": {
+				"navigationBarTitleText": "登录获取验证码"
+			}
 		}
 	],
 	"globalStyle": {

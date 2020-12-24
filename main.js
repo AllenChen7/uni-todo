@@ -26,4 +26,26 @@ Vue.use(httpInterceptor, app);
 import httpApi from '@/common/http.api.js';
 Vue.use(httpApi, app);
 
+
+Vue.prototype.checkLogin = function(backpage, backtype){
+	if(this.$u.test.isEmpty(this.vuex_token)){
+		// uni.redirectTo({
+		//     url: '/pages/login/index'
+		// });
+		this.$u.route('/pages/login/index', {
+			backpage: backpage,
+			backtype: backtype
+		});
+		return false;
+	}
+	return true;
+}
+
+Vue.prototype.getCurPage = function(){
+		    let pages = getCurrentPages();
+		    let curPage = pages[pages.length-1];
+			let curParam = curPage.options || curPage.$route.query;
+		    return curParam
+		}
+
 app.$mount()

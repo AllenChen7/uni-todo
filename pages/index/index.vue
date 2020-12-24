@@ -59,9 +59,9 @@
 			this.$u.api.getGoodsList().then(res => {
 				console.log(res, 'rrs');
 			})
-			this.$u.vuex('vuex_token', '1.0.1');
+			// this.$u.vuex('vuex_token', '');
 			// 修改对象的形式，中间用"."分隔
-			this.$u.vuex('vuex_user.name', '诗圣');
+			// this.$u.vuex('vuex_user.name', '诗圣');
 		},
 		methods: {
 			click(index) {
