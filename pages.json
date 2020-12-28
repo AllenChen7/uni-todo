@@ -6,7 +6,8 @@
 		{
 			"path": "pages/index/index",
 			"style": {
-				"navigationBarTitleText": "TODO"
+				"navigationBarTitleText": "TODO",
+				"enablePullDownRefresh": true
 			}
 		},
 		{
@@ -42,6 +43,17 @@
 			}
 		}
 	],
+	"subPackages": [{
+		"root": "pages/index",
+		"pages": [
+			{
+				"path": "show",
+				"style": {
+					
+				}
+			}
+		]
+	}],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
 		"navigationBarTitleText": "uView UI",

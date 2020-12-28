@@ -1,10 +1,11 @@
 // /common/http.interceptor.js
-
+let localUrl = 'http://l2.test/api';
+let onlineUrl = 'http://todo.hyyphp.online/api';
 // 这里的vm，就是我们在vue文件里面的this，所以我们能在这里获取vuex的变量，比如存放在里面的token变量
 const install = (Vue, vm) => {
 	// 此为自定义配置参数，具体参数见上方说明
 	Vue.prototype.$u.http.setConfig({
-		baseUrl: 'http://l2.test/api',
+		baseUrl: localUrl,
 		loadingText: '努力加载中~',
 		loadingTime: 800,
 		method: 'POST',
@@ -16,6 +17,7 @@ const install = (Vue, vm) => {
 		header: {
 			'content-type': 'application/json;charset=UTF-8'
 		},
+		originalData: true
 	});
 	
 	// 请求拦截，配置Token等参数
@@ -23,8 +25,7 @@ const install = (Vue, vm) => {
 		// 引用token
 		// 方式一，存放在vuex的token，假设使用了uView封装的vuex方式
 		// 见：https://uviewui.com/components/globalVariable.html
-		config.header.token = vm.vuex_token;
-		console.log(vm, 'vm')
+		config.header.Authorization = 'Bearer ' + vm.vuex_token;
 		
 		// 方式二，如果没有使用uView封装的vuex方法，那么需要使用$store.state获取
 		// config.header.token = vm.$store.state.token;
@@ -37,7 +38,6 @@ const install = (Vue, vm) => {
 		// const token = uni.getStorageSync('token');
 		// config.header.token = token;
 		// config.header.Token = 'xxxxxx';
-		console.log(config, 'config')
 		
 		// 可以对某个url进行特别处理，此url参数为this.$u.get(url)中的url值
 		if(config.url == '/user/login') config.header.noToken = true;
@@ -49,21 +49,28 @@ const install = (Vue, vm) => {
 	
 	// 响应拦截，判断状态码是否通过
 	Vue.prototype.$u.http.interceptor.response = (res) => {
-		console.log(res, 'res')
+		if (res.statusCode == 401) {
+			// 假设201为token失效，这里跳转登录
+			vm.$u.toast('验证失败，请重新登录');
+			// 此为uView的方法，详见路由相关文档
+			setTimeout(() => {
+				vm.$u.route('/pages/login/index4', {
+					backpage: '',
+					backtype: ''
+				});
+			}, 1500)
+			
+			return false;
+		}	
+		
+		res = res.data;
+		
 		if(res.code == 200) {
 			// res为服务端返回值，可能有code，result等字段
 			// 这里对res.result进行返回，将会在this.$u.post(url).then(res => {})的then回调中的res的到
 			// 如果配置了originalData为true，请留意这里的返回值
-			return res.data;
-		} else if(res.code == 401) {
-			// 假设201为token失效，这里跳转登录
-			vm.$u.toast('验证失败，请重新登录');
-			setTimeout(() => {
-				// 此为uView的方法，详见路由相关文档
-				vm.$u.route('/pages/login/login4')
-			}, 1500)
-			return false;
-		} else {
+			return res;
+		}else {
 			// 如果返回false，则会调用Promise的reject回调，
 			// 并将进入this.$u.post(url).then().catch(res=>{})的catch回调中，res为服务端的返回值
 			return false;

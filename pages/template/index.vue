@@ -50,6 +50,7 @@
 		onShow() {
 			var loginRes = this.checkLogin('/pages/template/index', '2');
 					if(!loginRes){return false;}
+			this.pic = this.vuex_user.avatar
 		},
 		methods: {
 			

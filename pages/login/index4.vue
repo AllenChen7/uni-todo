@@ -60,8 +60,8 @@ export default {
 				email: that.phone,
 				password: that.pwd
 			}).then(res => {
-				this.$u.vuex('vuex_token', res.access_token);
-				this.$u.vuex('vuex_user', res.user);
+				this.$u.vuex('vuex_token', res.data.access_token);
+				this.$u.vuex('vuex_user', res.data.user);
 				this.$u.route({
 					url: '/pages/template/index',
 					type: 'reLaunch'

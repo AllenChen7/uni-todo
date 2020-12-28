@@ -29,10 +29,7 @@ export default {
 	onLoad() {
 		/*获取当前路由*/
 		let curPage = this.getCurPage();
-		console.log(curPage, 'cc')
 		this.tel = curPage.phone
-		// console.log(this.tel, 'tel')
-		// this.getCaptcha()
 		let interval = setInterval(() => {
 			this.second--;
 			if (this.second <= 0) {
