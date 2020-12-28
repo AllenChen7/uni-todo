@@ -13,8 +13,8 @@
 			<u-form-item :leftIconStyle="{color: '#888', fontSize: '32rpx'}" left-icon="calendar" label-width="120" :label-position="labelPosition" label="期望结束时间" prop="startTime">
 				<u-input :border="border" placeholder="请选择期望结束时间" v-model="model.plan_end_time" @click='endTimeShowChange' type="text"></u-input>
 			</u-form-item>
-			<u-form-item :label-position="labelPosition" :leftIconStyle="{color: '#888', fontSize: '32rpx'}" left-icon="map" label="所在地区" prop="region" label-width="150">
-				<u-input :border="border" type="select" :select-open="pickerShow" v-model="model.region" placeholder="请选择地区" @click="pickerShow = true"></u-input>
+			<u-form-item :label-position="labelPosition" :leftIconStyle="{color: '#888', fontSize: '32rpx'}" left-icon="map" label="所在地区" prop="address" label-width="150">
+				<u-input :border="border" type="select" :select-open="pickerShow" v-model="model.address" placeholder="请选择地区" @click="pickerShow = true"></u-input>
 			</u-form-item>
 			<u-form-item :label-position="labelPosition" :leftIconStyle="{color: '#888', fontSize: '32rpx'}" left-icon="image" label="上传图片" prop="image" label-width="150">
 				<u-upload width="160" height="160" ref="uUpload" @on-success="imageReturn" max-count="1" :action="uploadAction"></u-upload>
@@ -47,7 +47,7 @@ export default {
 			model: {
 				title: '',
 				desc: '',
-				region: '',
+				address: '',
 				code: '',
 				image: '',
 				plan_start_time: '',
@@ -194,7 +194,15 @@ export default {
 		},
 		// 选择地区回调
 		regionConfirm(e) {
-			this.model.region = e.province.label + '-' + e.city.label + '-' + e.area.label;
+			this.model.address = e.province.label + '-' + e.city.label + '-' + e.area.label;
+			console.log(this.model.address)
+			uni.getLocation({
+			    type: 'wgs84',
+			    success: function (res) {
+			        console.log('当前位置的经度：' + res.longitude);
+			        console.log('当前位置的纬度：' + res.latitude);
+			    }
+			});
 		},
 		borderChange(index) {
 			this.border = !index;
